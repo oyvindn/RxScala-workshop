@@ -24,8 +24,67 @@ class: center, middle
 
 ---
 
-# Introduksjon / bakgrunn
+# RxScala
 
+- Basert på Netflix' RxJava
+
+- <i>a library for composing asynchronous and event-based programs by using observable sequences</i>
+
+- Bruker observer pattern til å støtte data- og eventsekvenser
+  
+- Kombinering av sekvensene uten bekymringer om lavnivåtråding, synkronisering, trådsikkerhet etc 
+
+- Standard Iterables er synkrone
+
+- Futures kan være komplekst å nøste
+
+---
+
+# Hvor er vi i verden?
+
+.center[![Default-aligned image](overview.png)]
+``` scala 
+// copy paste fra coursera :) 
+```
+
+---
+
+# Iterable (pull) VS Observable (push)
+```scala 
+
+  //Iterable            Observable
+
+  //retrieve data
+  T next()              onNext(T)
+
+  //discover error
+  throws Exception      onError(Exception)
+
+  //complete
+  returns               onCompleted()
+
+```
+
+---
+
+# Eksempel Iterable vs Observable
+
+```scala
+getDataFromLocalMemory()
+  .skip(10)
+  .take(5)
+  .map({ s -> return s + " transformed" })
+  .forEach({ println "next => " + it })
+
+```
+
+```scala
+getDataFromNetwork()
+  .skip(10)
+  .take(5)
+  .map({ s -> return s + " transformed" })
+  .subscribe({ println "onNext => " + it })
+```
 
 
 
