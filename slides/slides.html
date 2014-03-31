@@ -82,7 +82,7 @@ getDataFromLocalMemory()
 getDataFromNetwork()
   .skip(10)
   .take(5)
-  .map({ s -> return s + " transformed" })
+  .map({ s -> s + " transformed" })
   .subscribe({ println "onNext => " + it })
 ```
 
