@@ -39,7 +39,9 @@ object ImplementingAnSynchronousObservable extends App {
     })
   }
 
-  customBlockingObservable().subscribe(it => println(it))
+  val observable = customBlockingObservable()
+  observable.subscribe(it => println(it))
+//  observable.subscribe(it => println(it))
 }
 
 
@@ -61,5 +63,7 @@ object ImplementingAnAsynchronousObservable extends App {
     })
   }
 
-  customNonBlockingObservable().subscribe(it => println(it))
+  val observable = customNonBlockingObservable()
+  observable.subscribe(it => println(it))
+//  observable.subscribe(it => println(it))
 }
