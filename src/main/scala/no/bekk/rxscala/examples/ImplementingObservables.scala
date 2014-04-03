@@ -1,7 +1,9 @@
 package no.bekk.rxscala.examples
 
 import no.bekk.rxscala.util.ThreadRunner
-import rx.lang.scala.Observable
+import rx.lang.scala.{Scheduler, Observable}
+import scala.concurrent._
+import ExecutionContext.Implicits.global
 
 /*
  * You can implement asynchronous IO, computational operations, or “infinite” streams of data by using
@@ -45,7 +47,48 @@ object ImplementingAnAsynchronousObservable extends App {
 
   val observable = customNonBlockingObservable()
   observable.subscribe(s => println(s))
+//  observable.subscribe(s => println(s))
+}
+
+object ImplementingAnAsynchronousObservableWithScheduler extends App {
+  implicit val scheduler: Scheduler = rx.lang.scala.schedulers.NewThreadScheduler()
+
+  def customNonBlockingObservable()(implicit s: Scheduler): Observable[String] = {
+    Observable(subscriber => {
+      s.scheduleRec(self => {
+        0 to 50 foreach (n => if (!subscriber.isUnsubscribed) subscriber.onNext(s"value $n"))
+
+        // after sending all values we complete the sequence
+        subscriber.onCompleted()
+        self
+      })
+    })
+  }
+
+  val observable = customNonBlockingObservable()
+  observable.subscribe(s => println(s))
   //  observable.subscribe(s => println(s))
+
+  Thread.sleep(1000)
+}
+
+object ImplementingAnAsynchronousObservableWithFuture extends App {
+  def customNonBlockingObservable(): Observable[String] = {
+    Observable(subscriber => {
+      future {
+        0 to 50 foreach (n => if (!subscriber.isUnsubscribed) subscriber.onNext(s"value $n"))
+
+        // after sending all values we complete the sequence
+        subscriber.onCompleted()
+      }
+    })
+  }
+
+  val observable = customNonBlockingObservable()
+  observable.subscribe(s => println(s))
+//  observable.subscribe(s => println(s))
+
+  Thread.sleep(1000)
 }
 
 
