@@ -10,12 +10,8 @@ object AsyncObservableAssignment {
 
   // Create an Observable that emits the result of the two calculations.
   def mathCalculationsObservable(mathCalculation1: Calculation, mathCalculation2: Calculation): Observable[Int] = {
-    Observable(subscriber => {
-      val calculationFutures = List(mathCalculation1, mathCalculation2).map(calc => future(calc()))
-      val results = calculationFutures.map(Await.result(_, 1000 milliseconds))
-      results.foreach(subscriber.onNext)
-      subscriber.onCompleted()
-    })
+    def toAsyncObservable(calculation: Calculation) = Observable.from(future(calculation()))
+    toAsyncObservable(mathCalculation1).merge(toAsyncObservable(mathCalculation2))
   }
 
 }
