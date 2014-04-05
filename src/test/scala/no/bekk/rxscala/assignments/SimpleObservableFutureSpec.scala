@@ -12,9 +12,9 @@ class SimpleObservableFutureSpec extends FlatSpec {
       List("Camping", "filming", "test")
     }
 
-    new SimpleObservableFuture().createObservableFuture(f).subscribe(result => {
-      assert(result === List("Camping", "filming", "test"))
-    })
+   val result = SimpleObservableFuture.createObservableFuture(f).toBlockingObservable.toList
+   assert(result.size === 1)
+   assert(result.head === List("Camping", "filming", "test"))
   }
 
 }

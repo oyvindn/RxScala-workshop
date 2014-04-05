@@ -5,11 +5,12 @@ import scala.concurrent._
 import scala.util.{Success, Failure, Try}
 import scala.collection.mutable
 import scala.concurrent.duration._
+import ExecutionContext.Implicits.global
 
 class ObservableTimerSpec extends FlatSpec {
 
   it should "create an observable with a timer that emits a new int every 100ms and buffers in blocks of 5" in {
-      val observable = new ObservableTimer().createObservableTimer
+      val observable = ObservableTimer.createObservableTimer.take(3)
 
       val f = future(observable.toBlockingObservable.toList)
 

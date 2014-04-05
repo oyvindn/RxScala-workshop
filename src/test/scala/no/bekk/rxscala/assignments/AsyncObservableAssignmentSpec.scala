@@ -9,7 +9,7 @@ import scala.util.{Failure, Success, Try}
 
 class AsyncObservableAssignmentSpec extends FlatSpec with Matchers {
 
-  "Observable" should "emit the result of the two calculation" in {
+  it should "emit the result of the two calculation" in {
     val res1 = 64
     val res2 = 1024
     val calc1: Calculation = () => work(500 millisecond, res1)

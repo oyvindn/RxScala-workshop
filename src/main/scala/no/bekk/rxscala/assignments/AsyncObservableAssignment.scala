@@ -2,7 +2,6 @@ package no.bekk.rxscala.assignments
 
 import rx.lang.scala.Observable
 import no.bekk.rxscala.util.Work._
-import scala.concurrent.duration._
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
