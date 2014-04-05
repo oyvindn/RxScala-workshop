@@ -1,8 +1,8 @@
 package no.bekk.rxscala.examples
 
-import rx.lang.scala.Subject
+import rx.lang.scala.{Observable, Subject}
 import rx.lang.scala.subjects.{BehaviorSubject, ReplaySubject, AsyncSubject}
-
+import scala.concurrent.duration._
 
 /*
  * A Subject is a sort of bridge or proxy that acts both as an Subscriber and as an Observable.
@@ -112,4 +112,28 @@ object BehaviorSubjects extends App {
 
   channel.onNext(3)
 
+}
+
+object ConnectableObservable extends App {
+  val connectableObservable = Observable.timer(0 millis, 100 millis).publish
+
+  val subscription = connectableObservable.connect
+
+  val a = connectableObservable.subscribe(x => println(s"a: $x"))
+
+  Thread.sleep((1 second).toMillis)
+
+  val b = connectableObservable.subscribe(x => println(s"b: $x"))
+
+  Thread.sleep((1 second).toMillis)
+
+  a.unsubscribe()
+
+  Thread.sleep((2 second).toMillis)
+
+  val c = connectableObservable.subscribe(x => println(s"c: $x"))
+
+  subscription.unsubscribe()
+
+  Thread.sleep((1 second).toMillis)
 }
