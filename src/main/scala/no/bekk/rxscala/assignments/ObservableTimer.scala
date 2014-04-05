@@ -4,10 +4,10 @@ import scala.concurrent.duration._
 
 import rx.lang.scala.Observable
 
-class ObservableTimer {
+object ObservableTimer {
 
   def createObservableTimer: Observable[Seq[Long]] = {
-    Observable.timer(0 millis, 100 millis).buffer(500 millis).take(3)
+    Observable.timer(0 millis, 100 millis).buffer(500 millis)
 
   }
 
