@@ -4,7 +4,7 @@ import org.scalatest.FlatSpec
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
-class SimpleObservableFutureSpec extends FlatSpec {
+class ObservableFutureSpec extends FlatSpec {
 
 
   it should "create an observable emitting the value produced by the Future as its single item" in {
@@ -12,7 +12,7 @@ class SimpleObservableFutureSpec extends FlatSpec {
       List("Camping", "filming", "test")
     }
 
-   val result = SimpleObservableFuture.createObservableFuture(f).toBlockingObservable.toList
+   val result = ObservableFuture.createObservableFuture(f).toBlockingObservable.toList
    assert(result.size === 1)
    assert(result.head === List("Camping", "filming", "test"))
   }

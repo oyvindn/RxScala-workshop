@@ -10,7 +10,7 @@ object AsyncObservable {
   /*
    * Create an Observable that emits the result of the two calculations.
    */
-  def mathCalculationsObservable(calculation1: Calculation, calculation2: Calculation): Observable[Int] = {
+  def calculationsObservable(calculation1: Calculation, calculation2: Calculation): Observable[Int] = {
     def toAsyncObservable(calculation: Calculation) = Observable.from(future(calculation()))
 
     val obsCalc1 = toAsyncObservable(calculation1)
