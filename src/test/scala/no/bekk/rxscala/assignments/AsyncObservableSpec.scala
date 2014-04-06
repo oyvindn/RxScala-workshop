@@ -7,14 +7,14 @@ import scala.concurrent._
 import ExecutionContext.Implicits.global
 import scala.util.{Failure, Success, Try}
 
-class AsyncObservableAssignmentSpec extends FlatSpec with Matchers {
+class AsyncObservableSpec extends FlatSpec with Matchers {
 
   it should "emit the result of the two calculation" in {
     val res1 = 64
     val res2 = 1024
     val calc1: Calculation = () => work(500 millisecond, res1)
     val calc2: Calculation = () => work(500 millisecond, res2)
-    val observable = AsyncObservableAssignment.mathCalculationsObservable(calc1, calc2)
+    val observable = AsyncObservable.mathCalculationsObservable(calc1, calc2)
 
     val f = future(observable.toBlockingObservable.toList)
 

@@ -1,4 +1,4 @@
-### Introduksjon RxScala
+### Introduksjon til RxScala
 
 Denne workshopen vil gi en introduksjon til RxScala ved hjelp av slides og hands-on oppgaver. Workshopen benytter Scala.
 

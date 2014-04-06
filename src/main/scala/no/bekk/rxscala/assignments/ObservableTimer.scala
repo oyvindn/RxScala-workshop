@@ -1,7 +1,6 @@
 package no.bekk.rxscala.assignments
 
 import scala.concurrent.duration._
-
 import rx.lang.scala.Observable
 
 object ObservableTimer {

@@ -5,7 +5,7 @@ import no.bekk.rxscala.util.Work._
 import scala.concurrent._
 import ExecutionContext.Implicits.global
 
-object AsyncObservableAssignment {
+object AsyncObservable {
 
   // Create an Observable that emits the result of the two calculations.
   def mathCalculationsObservable(mathCalculation1: Calculation, mathCalculation2: Calculation): Observable[Int] = {
