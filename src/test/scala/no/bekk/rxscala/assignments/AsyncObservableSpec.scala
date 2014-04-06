@@ -14,7 +14,7 @@ class AsyncObservableSpec extends FlatSpec with Matchers {
     val res2 = 1024
     val calc1: Calculation = () => work(500 millisecond, res1)
     val calc2: Calculation = () => work(500 millisecond, res2)
-    val observable = AsyncObservable.mathCalculationsObservable(calc1, calc2)
+    val observable = AsyncObservable.calculationsObservable(calc1, calc2)
 
     val f = future(observable.toBlockingObservable.toList)
 
