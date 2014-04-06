@@ -7,7 +7,7 @@ import ExecutionContext.Implicits.global
 class SimpleObservableFutureSpec extends FlatSpec {
 
 
-  it should "create an blocking Observable from a Future" in {
+  it should "create an observable emitting the value produced by the Future as its single item" in {
     val f: Future[List[String]] = future {
       List("Camping", "filming", "test")
     }

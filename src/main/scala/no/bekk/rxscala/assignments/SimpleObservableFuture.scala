@@ -6,6 +6,9 @@ import ExecutionContext.Implicits.global
 
 object SimpleObservableFuture {
 
+  /*
+   * Create an observable emitting the value produced by the Future as its single item.
+   */
   def createObservableFuture(f: Future[List[String]]): Observable[List[String]] = {
     Observable.from(f)
   }

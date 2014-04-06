@@ -7,12 +7,14 @@ import ExecutionContext.Implicits.global
 
 object AsyncObservable {
 
-  // Create an Observable that emits the result of the two calculations.
-  def mathCalculationsObservable(mathCalculation1: Calculation, mathCalculation2: Calculation): Observable[Int] = {
+  /*
+   * Create an Observable that emits the result of the two calculations.
+   */
+  def mathCalculationsObservable(calculation1: Calculation, calculation2: Calculation): Observable[Int] = {
     def toAsyncObservable(calculation: Calculation) = Observable.from(future(calculation()))
 
-    val obsCalc1 = toAsyncObservable(mathCalculation1)
-    val obsCalc2 = toAsyncObservable(mathCalculation2)
+    val obsCalc1 = toAsyncObservable(calculation1)
+    val obsCalc2 = toAsyncObservable(calculation2)
     obsCalc1.merge(obsCalc2)
   }
 
