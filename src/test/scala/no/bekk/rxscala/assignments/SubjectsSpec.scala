@@ -1,17 +1,15 @@
 package no.bekk.rxscala.assignments
 
+import org.scalatest._
 import org.scalatest.FlatSpec
 import scala.concurrent._
 import scala.util.{Success, Failure, Try}
-import scala.collection.mutable
-import rx.lang.scala.subjects.{BehaviorSubject, ReplaySubject, AsyncSubject, PublishSubject}
 import ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import rx.lang.scala.{Subject, Observable}
 import rx.subjects.PublishSubject
 
-
-class SubjectsSpec extends FlatSpec {
+class SubjectsSpec extends FlatSpec with Matchers {
 
   it should "use subject to get more values on to an existing observable" in {
 
@@ -32,12 +30,7 @@ class SubjectsSpec extends FlatSpec {
 
     Try(Await.result(f, 100 millis)) match {
       case Success(res) => {
-        assert(res contains 1)
-        assert(res contains 2)
-        assert(res contains 3)
-        assert(res contains 4)
-        assert(res contains 5)
-        assert(res contains 6)
+        res should contain allOf (1,2,3,4,5,6)
         assert(!res.contains(7))
       }
       case Failure(e) => fail("Subjects failed")
