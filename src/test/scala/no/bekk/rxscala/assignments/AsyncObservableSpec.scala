@@ -37,7 +37,7 @@ class AsyncObservableSpec extends FlatSpec with Matchers {
   }
 
   it should "create an observable with a timer that emits a new int every 100ms and buffers it in blocks of 5" in {
-    val observable = AsyncObservables.observableTimer.take(3)
+    val observable = AsyncObservables.observableTimer.debounce(90 milliseconds).take(3)
 
     val f = future(observable.toBlockingObservable.toList)
     Try(Await.result(f, 1600 millisecond)) match {
