@@ -19,9 +19,11 @@ object AsyncObservables {
     obsCalc1.merge(obsCalc2)
   }
 
+
+
   /*
- * Create an observable emitting the value produced by the Future as its single item.
- */
+   * Create an observable emitting the value produced by the Future as its single item.
+   */
   def observableFuture(future: Future[List[String]]): Observable[List[String]] = Observable.from(future)
 
 
