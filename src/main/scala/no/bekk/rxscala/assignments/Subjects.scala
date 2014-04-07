@@ -12,20 +12,12 @@ object Subjects {
    * Create an subscription from the subject which sums up each value on the stream
    * Save the result in the total variable
    */
-  def createSumSubscriber(subject: Subject[Int]): Subscription = {
-    subject.subscribe(n => total += n)
-  }
+  def createSumSubscriber(subject: Subject[Int]): Subscription = ???
 
 
   /*
    * Create an observable by concating a subject to the initial observer
    * Add values to the subject stream
    */
-  def concatObservableAndSubject(initial: Observable[Int]) = {
-    val subject = ReplaySubject[Int]()
-    subject.onNext(5)
-    subject.onNext(6)
-    subject.onCompleted()
-    initial ++ subject
-  }
+  def concatObservableAndSubject(initial: Observable[Int]): Observable[Int] = ???
 }
