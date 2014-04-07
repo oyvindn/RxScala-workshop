@@ -119,6 +119,34 @@ En observer abbonerer altså på en Observable (Stream av data eller eventer)
 
 # Subjects
 
+Subject er en kombinasjon av Observer og Observable,
+
+```scala
+trait Suject[T] extends Observable[T] with Observer[T]
+
+```
+og har derfor tilgjengelig metoder fra både Observer
+```scala
+def onNext(value: T): Unit = Observer.this.onNext(value)
+def onError(error: Throwable): Unit = Observer.this.onError(error)
+def onCompleted(): Unit = Observer.this.onCompleted()
+```
+
+og Observable
+```scala
+def subscribe(): Subscription //mange implementasjoner
+```
+
+
+???
+Kan sammenlignes med hva en promise er til en future
+
+Kan både abbonnere på og legge til verdier
+
+---
+
+# Typer subjects
+
 	AsyncSubject
 		- Returnerer den siste verdien i streamen
 
@@ -135,6 +163,7 @@ En observer abbonerer altså på en Observable (Stream av data eller eventer)
 
 
 ???
+
 Kodeeksempler
 
 Async: Siste verdien. Future
