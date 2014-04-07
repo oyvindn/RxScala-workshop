@@ -7,7 +7,6 @@ import scala.util.Try
 import ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import rx.lang.scala._
-import rx.lang.scala.subjects.ReplaySubject
 import scala.util.Success
 import scala.util.Failure
 
