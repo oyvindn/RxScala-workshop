@@ -30,16 +30,10 @@ class SubjectsSpec extends FlatSpec with Matchers {
 
   }
 
+
   it should "use subject to get more values on to an existing observable" in {
-
-    val subject = Subject[Int]() //TASK: Replace with correct subject type
     val initial = Observable.from(List(1,2,3,4))
-    val target = Subjects.concatObservableAndSubject(initial, subject)
-
-    subject.onNext(5)
-    subject.onNext(6)
-    subject.onCompleted()
-    subject.onNext(7)
+    val target = Subjects.concatObservableAndSubject(initial)
 
     val f = future(target.toBlockingObservable.toList)
 
