@@ -1,9 +1,6 @@
 package no.bekk.rxscala.assignments
 
 import rx.lang.scala.Observable
-import scala.concurrent.{ExecutionContext, Future}
-import scala.concurrent.duration._
-import ExecutionContext.Implicits.global
 
 object BasicObservables {
 
@@ -26,17 +23,4 @@ object BasicObservables {
    */
   def observableSumLastTen(observable: Observable[Int]): Observable[Int] = observable.filter(_ > 0).takeRight(10).sum
 
-
-
-  /*
-   * Create an observable emitting the value produced by the Future as its single item.
-   */
-  def observableFuture(future: Future[List[String]]): Observable[List[String]] = Observable.from(future)
-
-
-
-  /*
-   * Create an observable using a timer or interval that emits a new Int every 100ms, and transform it to emit buffers of 5 values at a time
-   */
-  def observableTimer: Observable[Seq[Long]] = Observable.interval(100 millisecond).buffer(5)
 }

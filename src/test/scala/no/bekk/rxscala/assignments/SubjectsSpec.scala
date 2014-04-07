@@ -44,10 +44,9 @@ class SubjectsSpec extends FlatSpec with Matchers {
     val f = future(target.toBlockingObservable.toList)
 
     Try(Await.result(f, 100 millis)) match {
-      case Success(res) => {
+      case Success(res) =>
         res should contain allOf (1,2,3,4,5,6)
         assert(!res.contains(7))
-      }
       case Failure(e) => fail("Subjects failed")
     }
 
