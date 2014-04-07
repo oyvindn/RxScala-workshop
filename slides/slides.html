@@ -20,9 +20,11 @@ class: center, middle
 
 1. Introduksjon / bakgrunn
 
-2. Eksempler
+2. Observables
+    - Eksempler og oppgaver
 
-3. Oppgaver
+3. Subjects
+    - Eksempler og oppgaver
 
 ---
 
@@ -114,6 +116,30 @@ Hovedforskjellen her er at forEach er bytta ut med subscribe.
 
 En observer abbonerer altså på en Observable (Stream av data eller eventer)
 
+---
+
+class: center, middle
+# Kodeeksempler og oppgaver
+
+
+???
+Eksempelkode:
+
+1. CreatingObservablesFromExistingDataStructures
+
+2. ComposingObservables
+
+3. ImplementingObservables
+
+4. ErrorHandling
+
+Oppgaver:
+
+1. BasicObservablesSpec
+
+2. AsyncObservableSpec
+
+3. ErrorHandlingSpec
 
 ---
 
@@ -151,7 +177,7 @@ Kan både abbonnere på og legge til verdier
 		- Returnerer den siste verdien i streamen
 
 	BehaviorSubject
-		- Returnerer den siste verdien og alle kommende verier
+		- Returnerer den forrige verdien og alle kommende verier (etter subscription)
 
 	PublishSubject (også kjent som bare Subject)
 		- Returnerer alle kommende verdier (etter subscription)
@@ -164,12 +190,28 @@ Kan både abbonnere på og legge til verdier
 
 ???
 
-Kodeeksempler
-
 Async: Siste verdien. Future
 Behavior: Siste verdi + kommende
 Publish: Kommende
 Replay: Alle verdier
+
+Ingen verdier etter onComplete
+
+---
+
+class: center, middle
+
+#Kodeeksempler og oppgaver
+
+
+???
+Eksempelkode:
+
+Subjects
+
+Oppgaver:
+
+SubjectsSpec
 
 
 		</textarea>
