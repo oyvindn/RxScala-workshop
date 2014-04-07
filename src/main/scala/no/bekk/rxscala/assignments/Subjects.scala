@@ -7,11 +7,19 @@ object Subjects {
 
   var total = 0
 
+  /*
+   * Create an subscription from the subject which sums up each value on the stream
+   * Save the result in the total variable
+   */
   def createSumSubscriber(subject: Subject[Int]): Subscription = {
     subject.subscribe(n => total += n)
   }
 
-  def concatObservableAndSubject(obs: Observable[Int], repSub: Subject[Int]) = {
-    obs ++ repSub
+
+  /*
+   * Create an observable by concating the subject with the initial observer
+   */
+  def concatObservableAndSubject(initial: Observable[Int], subject: Subject[Int]) = {
+    initial ++ subject
   }
 }

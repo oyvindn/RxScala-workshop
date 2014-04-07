@@ -42,7 +42,9 @@ class: center, middle
 
 ???
 RxScala er en undermodul av RxJava som Eivind holdt foredrag om på fagdagen
+
 Små forskjeller
+
 Iterables og futures: Vi trenger en kombinasjon av dette
 
 ---
@@ -56,8 +58,11 @@ Iterables og futures: Vi trenger en kombinasjon av dette
 
 ???
 Synkron og entall: Try. Enkel type evt med feilhåndtering. Tråden blokkeres
+
 Synkron og flertall: Iterable. puller data ut.
+
 Asynkron og entall: Future. Låser ikke før kall til .get(), men kan som sagt være vanskelig å nøste uten å måtte kalle .get() og ergo miste asynkroniteten
+
 Asynkron og flertall: Observable. Derfor vi er her. Håndterer begge deler på fleksible måte
 
 
@@ -81,6 +86,7 @@ Asynkron og flertall: Observable. Derfor vi er her. Håndterer begge deler på f
 
 ???
 Man kan si at man konsumenten puller data fra en iterable mens produsenten pusher til sin observer når man snakker om Observable.
+
 Mer deklerativt
 
 ---
@@ -104,7 +110,8 @@ getDataFromNetwork()
 	.subscribe({ println "onNext => " + it })
 ```
 ???
-Hovedforskjellen her er at forEach er bytta ut med subscribe. 
+Hovedforskjellen her er at forEach er bytta ut med subscribe.
+
 En observer abbonerer altså på en Observable (Stream av data eller eventer)
 
 
