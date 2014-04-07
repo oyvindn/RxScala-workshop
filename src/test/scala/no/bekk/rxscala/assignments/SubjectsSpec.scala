@@ -12,11 +12,11 @@ import scala.util.Failure
 
 class SubjectsSpec extends FlatSpec with Matchers {
 
-  it should "create subsribers that sums up each value on subject stream" in {
+  it should "create subscribers that sums up each value on subject stream" in {
     val subject = Subject[Int]()
 
     val a = Subjects.createSumSubscriber(subject)
-    val b = Subjects.createSumSubscriber(subject)
+    Subjects.createSumSubscriber(subject)
 
     subject.onNext(1)
     subject.onNext(2)
@@ -27,7 +27,6 @@ class SubjectsSpec extends FlatSpec with Matchers {
     subject.onCompleted()
 
     assert(Subjects.total === 1 + 1 + 2 + 2 + 3)
-
   }
 
 
