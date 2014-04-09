@@ -7,7 +7,7 @@ object ErrorHandling extends App {
   def customNonBlockingObservableWithErrorHandling(): Observable[String] = {
     Observable(subscriber => {
       // For simplicity this example uses a Thread instead of an ExecutorService/ThreadPool
-      ThreadRunner {
+      ThreadRunner(() => {
         0 to 50 foreach (n => {
           if (!subscriber.isUnsubscribed) {
             if(n < 30) {
@@ -20,7 +20,7 @@ object ErrorHandling extends App {
 
         // after sending all values we complete the sequence
         subscriber.onCompleted()
-      }
+      })
     })
   }
 
