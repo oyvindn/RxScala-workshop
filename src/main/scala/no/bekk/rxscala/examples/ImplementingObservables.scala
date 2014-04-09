@@ -25,7 +25,7 @@ object ImplementingAnSynchronousObservable extends App {
 
   val observable = customBlockingObservable()
   observable.subscribe(s => println(s))
-  //  observable.subscribe(s => println(s))
+//    observable.subscribe(s => println(s))
 }
 
 
