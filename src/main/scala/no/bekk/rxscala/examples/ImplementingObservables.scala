@@ -36,18 +36,18 @@ object ImplementingAnAsynchronousObservable extends App {
   def customNonBlockingObservable(): Observable[String] = {
     Observable(subscriber => {
       // For simplicity this example uses a Thread instead of an ExecutorService/ThreadPool
-      ThreadRunner {
+      ThreadRunner(() => {
         0 to 50 foreach (n => if (!subscriber.isUnsubscribed) subscriber.onNext(s"value $n"))
 
         // after sending all values we complete the sequence
         subscriber.onCompleted()
-      }
+      })
     })
   }
 
   val observable = customNonBlockingObservable()
   observable.subscribe(s => println(s))
-//  observable.subscribe(s => println(s))
+  observable.subscribe(s => println(s))
 }
 
 object ImplementingAnAsynchronousObservableWithScheduler extends App {
