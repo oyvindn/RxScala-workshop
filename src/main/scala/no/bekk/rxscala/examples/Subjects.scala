@@ -110,7 +110,7 @@ object BehaviorSubjects extends App {
 
   val d = channel.subscribe(x => println(s"d: $x"))
 
-  channel.onNext(3)
+  channel.onNext(4)
 
 }
 
